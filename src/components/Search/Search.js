@@ -10,8 +10,7 @@ const Search = ({searchedProductList}) => {
     }
     const clickClear = () => {
         setSearchedValue('')
-        // setSearchedValue(e.target.value)
-        // searchedProductList(e.target.value)
+        searchedProductList('')
     }
     const hasValue = searchedValue.length > 0 ? true : false
 
