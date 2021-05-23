@@ -1,14 +1,17 @@
 import React from 'react'
 import {useState} from 'react'
 
-const Search = () => {
+const Search = ({searchedProductList}) => {
     const [searchedValue, setSearchedValue] = useState('')
 
     const changeProductList = (e) => {
         setSearchedValue(e.target.value)
+        searchedProductList(e.target.value)
     }
     const clickClear = () => {
         setSearchedValue('')
+        // setSearchedValue(e.target.value)
+        // searchedProductList(e.target.value)
     }
     const hasValue = searchedValue.length > 0 ? true : false
 
@@ -17,7 +20,7 @@ const Search = () => {
             <label>
                 Search
             </label>
-            <input type='text' value={searchedValue} onChange={changeProductList} />
+            <input className='search-input' type='text' value={searchedValue} onChange={changeProductList} />
             {
                 hasValue && <button className='clear-search' onClick={clickClear}>Clear</button>
             }

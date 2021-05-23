@@ -1,12 +1,19 @@
 import React from 'react'
 import './ProductItem.css';
 
-const ProductItem = ({listOfProducts}) => {
+const ProductItem = ({listOfProducts, searchedProduct}) => {
+    const filteredProduct = listOfProducts.filter((product) => {
+        return product.includes(searchedProduct)
+    })
+    const searchThis = searchedProduct.length > 0 ? filteredProduct : listOfProducts
+
     return (
         <>
-            {listOfProducts.map((product) => {
-                return <li key={product}>{product}</li>
-            })}
+            {
+                searchThis.map((product) => {
+                    return <li key={product}>{product}</li>
+                })
+            }
         </>
     )
 }
