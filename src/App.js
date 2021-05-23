@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import ProductItem from './components/ProductItem/ProductItem'
+import Search from './components/Search/Search'
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <h1>
             Welcome to my fake store
         </h1>
+        <Search />
         {
             hasProductList ?
             <ul className="product-list">
