@@ -1,0 +1,21 @@
+.product-list li {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 2%;
+  padding: 18px 14px;
+  font-family: 'Marko One',serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  color: black;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 #423f3f, 0 1px 3px 0 #423f3f;
+}
+
+.product-list li:hover {
+  box-shadow: 0 1px 2px 0 #423f3f, 0 2px 6px 0 #423f3f;
+}
