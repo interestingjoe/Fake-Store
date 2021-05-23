@@ -28,7 +28,7 @@ function App() {
             <ul className="product-list">
                 <ProductItem listOfProducts={productList}/>
             </ul>
-            : 'Loading...'
+            : <p className='loding-copy'>Loading...</p>
         }
         </>
     );
