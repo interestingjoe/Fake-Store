@@ -5,7 +5,10 @@ $black: rgb(0,0,0);
     li {
         display: inline-block;
         vertical-align: top;
-        margin: 0 2%;
+        max-width: 272px;
+        min-height: 49px;
+        width: 100%;
+        margin: 0 2% 16px;
         padding: 18px 14px;
         font-family: 'Marko One',serif;
         font-size: 16px;
