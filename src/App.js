@@ -6,27 +6,32 @@ import './App.css';
 function App() {
     const [productList, setProductList] = useState([])
     const [searchedProduct, setSearchedProduct] = useState('')
-
-    // Delays the list during initial page load to give time to pull from API
-    useEffect(() => {
-        setTimeout(() => {
-            setProductList(getProductsFromAPI())
-        }, 2000);
-    }, [])
+    const [apiData, setApiData] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     // Pulls from an API. For now I'm using a static array.
-    const getProductsFromAPI = () => {
-        return [
-            'car',
-            'bike',
-            'ball',
-            'motorcyle'
-        ]
+    // const staticArr = [
+    //     'car',
+    //     'bike',
+    //     'ball',
+    //     'motorcyle'
+    // ]
+    const useFetch = (url) => {
+        const [data, setData] = useState(null)
+
+        useEffect(async() => {
+            const response = await fetch(url)
+            const resJSON = await response.json()
+            setData(resJSON.map((e) => e.title))
+            setLoading(false)
+        }, [])
+
+        return data
     }
-    const hasProductList = productList.length > 0 ? true : false
     const searchedProductList = (searchProduct) => {
         setSearchedProduct(searchProduct)
     }
+    const asdf = useFetch('https://fakestoreapi.com/products/')
 
     return (
         <>
@@ -35,11 +40,12 @@ function App() {
         </h1>
         <Search searchedProductList={searchedProductList} />
         {
-            hasProductList ?
+            loading ?
+            <p className='loding-copy'>Loading...</p>
+            :
             <ul className="product-list">
-                <ProductItem listOfProducts={productList} searchedProduct={searchedProduct} />
+                <ProductItem listOfProducts={asdf} searchedProduct={searchedProduct} />
             </ul>
-            : <p className='loding-copy'>Loading...</p>
         }
         </>
     );
