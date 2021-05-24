@@ -6,32 +6,24 @@ import './App.css';
 function App() {
     const [productList, setProductList] = useState([])
     const [searchedProduct, setSearchedProduct] = useState('')
-    const [apiData, setApiData] = useState(null)
     const [loading, setLoading] = useState(true)
 
-    // Pulls from an API. For now I'm using a static array.
-    // const staticArr = [
-    //     'car',
-    //     'bike',
-    //     'ball',
-    //     'motorcyle'
-    // ]
-    const useFetch = (url) => {
-        const [data, setData] = useState(null)
-
-        useEffect(async() => {
-            const response = await fetch(url)
-            const resJSON = await response.json()
-            setData(resJSON.map((e) => e.title))
-            setLoading(false)
-        }, [])
-
-        return data
+    // Get from API.
+    const getData = async(url) => {
+        const response = await fetch(url)
+        const resJSON = await response.json()
+        setProductList(resJSON.map((e) => e.title))
+        setLoading(false)
     }
+
+    // Listens to search bar and populates results.
     const searchedProductList = (searchProduct) => {
         setSearchedProduct(searchProduct)
     }
-    const asdf = useFetch('https://fakestoreapi.com/products/')
+
+    useEffect(() => {
+        getData('https://fakestoreapi.com/products/')
+    }, [])
 
     return (
         <>
@@ -44,7 +36,7 @@ function App() {
             <p className='loding-copy'>Loading...</p>
             :
             <ul className="product-list">
-                <ProductItem listOfProducts={asdf} searchedProduct={searchedProduct} />
+                <ProductItem listOfProducts={productList} searchedProduct={searchedProduct} />
             </ul>
         }
         </>
